@@ -1,0 +1,11 @@
+<widget name="load-datasets-from-ajax"
+        factory-class="com.aviarc.framework.toronto.widget.DefaultWidgetProviderFactoryImpl"
+        action="y">
+    <attributes>
+        <attribute name="url" mandatory="y"/>
+    </attributes>
+    <includes>        
+        <js-include file="LoadDatasetsFromAjax.js"/>    
+    </includes>    
+    <js-constructor>new YAHOO.testOffline.LoadDatasetsFromAjax()</js-constructor>
+</widget>

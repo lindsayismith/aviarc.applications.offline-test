@@ -1,0 +1,12 @@
+<xml-command name="send-dataset-json" classname="testoffline.xmlcommands.SendDatasetJson">
+    <attributes>
+        
+	</attributes>
+	<sub-elements>
+		<sub-element name="dataset">
+			<attributes>
+				<attribute name="name" mandatory="y"/>
+			</attributes>
+		</sub-element>
+	</sub-elements>
+</xml-command>

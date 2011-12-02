@@ -1,0 +1,11 @@
+<widget name="copy-datasets-to-storage"
+        factory-class="com.aviarc.framework.toronto.widget.DefaultWidgetProviderFactoryImpl"
+        action="y">
+    <attributes>
+        
+    </attributes>
+    <includes>        
+        <js-include file="CopyDatasetsToStorage.js"/>    
+    </includes>    
+    <js-constructor>new YAHOO.testOffline.CopyDatasetsToStorage()</js-constructor>
+</widget>

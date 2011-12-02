@@ -1,0 +1,67 @@
+<screen xmlns:action="urn:aviarc:widget:com.aviarc.toronto.widget.core.action:1" 
+        xmlns:app="urn:aviarc:widget:application" xmlns:dataset="urn:aviarc:widget:com.aviarc.toronto.widget.core.action.dataset">
+    <record-table height="156" width="520" left="165" top="74" dataset="data">
+        <column width="0" display-field="field1" />
+        <column width="0" display-field="field2" />
+        
+    </record-table>
+    <button left="165" top="250" width="100" height="26" label="Online?">
+        <action:when event="onClick">
+            <action:if>
+                <app:is-online/>
+                <then>
+                    <action:alert message="Yes"/>
+                </then>
+                <else>
+                    <action:alert message="Nein"/>
+                </else>
+            </action:if>
+        </action:when>        
+    </button>
+    
+    <button left="165" top="300" width="100" height="26" label="Clear">
+        <action:when event="onClick">
+            <app:clear-local-storage/>
+        </action:when>        
+    </button>
+    
+    <button left="300" top="250" width="150" height="26" label="Copy DS to Storage">
+        <action:when event="onClick">
+            <app:copy-datasets-to-storage/>
+        </action:when>        
+    </button>
+    
+    <button left="500" top="250" width="150" height="26" label="Pull DS from Storage">
+        <action:when event="onClick">
+            <app:pull-datasets-from-storage/>
+        </action:when>        
+    </button>
+    <button height="30" width="70" left="710" top="80" label="+">
+        <action:when event="onClick">
+            <dataset:create-row dataset="data"/>
+        </action:when>
+    </button>
+    <text-edit height="26" width="100" left="710" top="130" field="data.field1" />
+    <text-edit height="26" width="100" left="820" top="130" field="data.field2" />
+ 
+    <app:add-cache-manifest>
+        <manifest-workflow name="test-manifest"/>
+        <manifest-parameter name="test" value="{$authentication.authenticated-user}"/>
+    </app:add-cache-manifest>
+    <button height="26" width="100" left="363" top="374" label="Next" action="Next">    
+        
+    </button>
+    <button height="26" width="100" left="713" top="252" label="Ajax Load">
+        <action:when event="onClick">
+            <app:load-datasets-from-ajax url="test"/>           
+        </action:when>
+    </button>
+    
+    <app:cache-reload-widget/>
+       
+    
+    
+        
+    
+        
+</screen>

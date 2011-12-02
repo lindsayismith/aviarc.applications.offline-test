@@ -1,0 +1,14 @@
+<workflow>
+    <authenticate error-screen="login-error" dataset="login">
+        <show-screen name="login"/>
+    </authenticate>
+    <create-row dataset="manifest-entries"/>
+    <set-field field="manifest-entries.path" value="#{$authentication.authenticated-user}"/>        
+    <!--
+    <dataset name="paths" databroker="manifest-data" query="get-all"/>
+    <dataset-iterator dataset="paths">
+        <create-row dataset="manifest-entries"/>
+        <set-field field="manifest-entries.path" value="{$paths.path}"/>        
+        <set-field field="manifest-entries.add-static-prefix" value="{$paths.add-static-prefix}"/>        
+    </dataset-iterator>         -->
+</workflow>

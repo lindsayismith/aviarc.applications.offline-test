@@ -1,0 +1,20 @@
+<workflow url="/test">
+    <dataset name="data"/>
+    <create-row dataset="data"/>
+    <set-field field="data.field1" value="new value 11"/>
+    <set-field field="data.field2" value="new value 12"/>
+
+    <create-row dataset="data"/>
+    <set-field field="data.field1" value="new value 21"/>
+    <set-field field="data.field2" value="new value 22"/>
+
+    
+    <create-row dataset="data"/>
+    <set-field field="data.field1" value="new value 31"/>
+    <set-field field="data.field2" value="new value 42"/>
+
+
+    <send-dataset-json>
+        <dataset name="data"/>
+    </send-dataset-json>
+</workflow>

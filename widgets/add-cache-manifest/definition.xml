@@ -1,0 +1,27 @@
+<widget name="add-cache-manifest"
+        factory-class="com.aviarc.framework.toronto.widget.DefaultWidgetProviderFactoryImpl"
+        widget-provider-class="testoffline.widgets.AddCacheManifestWidgetProviderImpl"
+        rendered-node-factory="testoffline.widgets.AddCacheManifest"
+        container-positioning="y">
+                
+    <attributes />
+    <sub-elements>
+        <sub-element name="manifest-entry">
+            <attributes>
+                <attribute name="url" mandatory="y"/>
+                <attribute name="add-static-prefix" mandatory="n" default="y"/>
+            </attributes>
+        </sub-element>        
+        <sub-element name="manifest-workflow">
+            <attributes>
+                <attribute name="name" mandatory="y"/>
+            </attributes>
+        </sub-element>
+        <sub-element name="manifest-parameter">
+            <attributes>
+                <attribute name="name" mandatory="y"/>
+                <attribute name="value" mandatory="y"/>
+            </attributes>
+        </sub-element>
+    </sub-elements>
+</widget>

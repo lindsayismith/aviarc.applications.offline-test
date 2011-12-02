@@ -1,0 +1,22 @@
+
+<workflow>
+    <create-row dataset="{$context.internal-dataset-name}"/>
+    <set-field field="{$context.internal-dataset-name}.id" value="CUST001"/>
+    <set-field field="{$context.internal-dataset-name}.region_id" value="1"/>
+    <set-field field="{$context.internal-dataset-name}.name" value="Chris Warner" />
+    <set-field field="{$context.internal-dataset-name}.date_added" value="03/02/1994" />
+ 
+    <create-row dataset="{$context.internal-dataset-name}"/>
+    <set-field field="{$context.internal-dataset-name}.id" value="CUST002"/>
+    <set-field field="{$context.internal-dataset-name}.region_id" value="2"/>
+    <set-field field="{$context.internal-dataset-name}.name" value="Libby Jefferies" />
+    <set-field field="{$context.internal-dataset-name}.date_added" value="21/03/2006" />
+ 
+    <create-row dataset="{$context.internal-dataset-name}"/>
+    <set-field field="{$context.internal-dataset-name}.id" value="CUST003"/>
+    <set-field field="{$context.internal-dataset-name}.region_id" value="2"/>
+    <set-field field="{$context.internal-dataset-name}.name" value="Kieran Mitchell" />
+    <set-field field="{$context.internal-dataset-name}.date_added" value="31/08/2008" />
+ 
+</workflow>
+

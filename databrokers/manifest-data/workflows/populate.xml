@@ -1,0 +1,15 @@
+
+<workflow>
+    <create-row dataset="{$context.internal-dataset-name}"/>
+    <set-field field="{$context.internal-dataset-name}.path" value="something/path1.png"/>
+    <set-field field="{$context.internal-dataset-name}.add-static-prefix" value="y"/>
+    
+    <create-row dataset="{$context.internal-dataset-name}"/>
+    <set-field field="{$context.internal-dataset-name}.path" value="something/path2.png"/>    
+    
+    <create-row dataset="{$context.internal-dataset-name}"/>
+    <set-field field="{$context.internal-dataset-name}.path" value="something/path3.png"/>
+    <set-field field="{$context.internal-dataset-name}.add-static-prefix" value="y"/>
+
+</workflow>
+

@@ -1,0 +1,13 @@
+<databroker factory-class="com.aviarc.framework.databroker.inmemory.InMemoryDataBrokerFactoryImpl">
+    <populate workflow='workflows/populate' />
+    
+   <operation name='get-all' workflow='workflows/queries/get-all'>
+   </operation>
+    
+   
+    <store-dataset-changes>
+        <create workflow='workflows/create' />
+        <update workflow='workflows/update' />
+        <delete workflow='workflows/delete' />
+    </store-dataset-changes>
+</databroker>

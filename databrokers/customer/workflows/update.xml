@@ -1,0 +1,15 @@
+<workflow>
+    <set-current-row-by-field value="{$parameters.id}" dataset="{$context.internal-dataset-name}" field="id"/>
+    
+    <if>
+        <condition test="equal" value1="{$parameters.id}" value2="{${$context.internal-dataset-name}.id}"/>
+        <then>
+            <set-field field="{$context.internal-dataset-name}.name" value="{$parameters.name}"/>
+            <set-field field="{$context.internal-dataset-name}.region_id" value="{$parameters.region_id}"/>
+            <set-field field="{$context.internal-dataset-name}.date_added" value="{$parameters.date_added}"/>
+
+        </then>
+    </if>
+
+</workflow>
+

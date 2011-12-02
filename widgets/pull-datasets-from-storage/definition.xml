@@ -1,0 +1,11 @@
+<widget name="pull-datasets-from-storage"
+        factory-class="com.aviarc.framework.toronto.widget.DefaultWidgetProviderFactoryImpl"
+        action="y">
+    <attributes>
+        
+    </attributes>
+    <includes>        
+        <js-include file="PullDatasetsFromStorage.js"/>    
+    </includes>    
+    <js-constructor>new YAHOO.testOffline.PullDatasetsFromStorage()</js-constructor>
+</widget>

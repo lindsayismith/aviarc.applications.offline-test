@@ -1,0 +1,11 @@
+<widget name="cache-reload-widget" 
+        container-positioning="y" 
+        factory-class="com.aviarc.framework.toronto.widget.DefaultWidgetProviderFactoryImpl">
+       
+    <attributes />
+    <includes>
+        <css-include file="cache-reload-widget.css"/>
+        <js-include file="CacheReloadWidget.js"/>
+    </includes>
+    <js-constructor>new YAHOO.testOffline.CacheReloadWidget()</js-constructor>
+</widget>

@@ -1,0 +1,11 @@
+<widget name="clear-local-storage"
+        factory-class="com.aviarc.framework.toronto.widget.DefaultWidgetProviderFactoryImpl"
+        action="y">
+    <attributes>
+        
+    </attributes>
+    <includes>        
+        <js-include file="ClearLocalStorage.js"/>    
+    </includes>    
+    <js-constructor>new YAHOO.testOffline.ClearLocalStorage()</js-constructor>
+</widget>

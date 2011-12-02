@@ -1,0 +1,11 @@
+<widget name="is-online"
+        factory-class="com.aviarc.framework.toronto.widget.DefaultWidgetProviderFactoryImpl"
+        action="y">
+    <attributes>
+        
+    </attributes>
+    <includes>        
+        <js-include file="IsOnline.js"/>    
+    </includes>    
+    <js-constructor>new YAHOO.testOffline.IsOnline()</js-constructor>
+</widget>

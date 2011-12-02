@@ -1,0 +1,6 @@
+<workflow>
+    <dataset-iterator dataset="{$context.internal-dataset-name}">
+        <create-row dataset="{$context.populate-dataset-name}"/>
+        <copy-row to-dataset="{$context.populate-dataset-name}" from-dataset="{$context.internal-dataset-name}"/>
+    </dataset-iterator>
+</workflow>

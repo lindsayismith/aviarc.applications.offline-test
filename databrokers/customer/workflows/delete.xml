@@ -1,0 +1,9 @@
+<workflow>
+    <set-current-row-by-field value="{$parameters.id}" dataset="{$context.internal-dataset-name}" field="id"/>
+    <if>
+        <condition test="equal" value1="{$parameters.id}" value2="{${$context.internal-dataset-name}.id}"/>
+        <then>
+            <delete-row dataset="{$context.internal-dataset-name}"/>
+        </then>
+    </if>
+</workflow>    

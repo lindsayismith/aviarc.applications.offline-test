@@ -1,0 +1,40 @@
+<screen width="800" height="600" 
+		xmlns:app="urn:aviarc:widget:application"
+		class="center" >
+	<group-box visible="y" left="12" top="4" width="770" height="580" >
+		<!--<header visible="y" left="12" top="122" width="742" height="445" title="Training Management System" />-->
+		<text-static class="center huge bold" left="12" top="122" width="742" height="445" text="Training Management System"/>
+		<container name="header" left="0" top="0" right="0" height="120" >
+			<container visible="y" left="172" top="13" width="496" height="97" name="header-center" class="center center-blue"/>
+			<container visible="y" left="671" top="15" width="83" height="83" name="header-right" class="right right-blue"/>
+			<container visible="y" left="11" top="14" width="104" height="75" name="header-left" class="left left-blue"/>
+		</container>
+		<group-box visible="y" left="238" top="255" width="289" height="160" title="Login" border="in" class="blue">
+			<text-edit focus="y" name="username" visible="y" left="143" top="46" width="114" height="20" multi-line="n" field="login.username" mandatory="n" show-type="n" />
+			<text-edit name="password" visible="y" left="144" top="82" width="114" height="20" multi-line="n" field="login.password" mandatory="n" show-type="n" datatype="password" />
+			<text-static visible="y" text="User name:" left="41" top="50" width="100" class="label" />
+			<text-static visible="y" text="Password:" left="41" top="86" width="100" class="label" />
+			<button visible="y" name="login" label="Login" left="176" top="123" width="80" height="24" validate="y" action="Next" enabled="y" class="blue"/>
+		</group-box>
+	</group-box>
+
+    <behaviors xmlns="urn:aviarc:widget:com.aviarc.toronto.widget.core.action">
+        <when>
+            <events>
+                <widget-event event="username.onKeyDown" />
+                <widget-event event="password.onKeyDown" />
+            </events>
+            <do>
+                <if>
+                    <script>
+                        var e = state.getEventParameters()[0].keyCode;
+                        state.getExecutionState().setReturnValue(e == 13);
+                    </script>
+                    <then>
+                        <call-widget-method method="login.click" />
+                    </then>
+                </if>
+            </do>
+        </when>    
+    </behaviors>
+</screen>
