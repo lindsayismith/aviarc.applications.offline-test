@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.servlet.http.HttpServletResponse;
 
 import com.aviarc.core.InterfaceQuery;
 import com.aviarc.core.UnsupportedInterfaceException;
@@ -15,16 +16,15 @@ import com.aviarc.core.dataset.DatasetPermission;
 import com.aviarc.core.exceptions.AviarcRuntimeException;
 import com.aviarc.core.exceptions.ExecutionException;
 import com.aviarc.core.response.HttpResponse;
-import com.aviarc.core.response.ResponseContent;
+import com.aviarc.core.response.HttpResponseContent;
 import com.aviarc.core.runtimevalues.RuntimeValue;
+import com.aviarc.core.serialization.SerializationID;
 import com.aviarc.core.state.State;
 import com.aviarc.core.util.JavascriptUtils;
-import com.aviarc.framework.dataset.DatasetImpl;
-import com.aviarc.framework.toronto.datacontext.RequiredDatasetFinder;
+import com.aviarc.framework.toronto.screen.ScreenRenderingContext;
 import com.aviarc.framework.toronto.screen.TorontoClientSideCapable;
 import com.aviarc.framework.toronto.screen.TorontoClientSideCapableCreator;
-import com.aviarc.framework.toronto.screen.dataset.TorontoJavascriptAwareDataset;
-import com.aviarc.framework.toronto.screen.resuming.TorontoRequestStateWrappingResumable.TorontoHttpResponse;
+import com.aviarc.framework.toronto.widget.NameManager;
 import com.aviarc.framework.xml.command.AbstractXMLCommand;
 import com.aviarc.framework.xml.compilation.CompiledElementContext;
 
@@ -54,7 +54,7 @@ public class SendDatasetJson extends AbstractXMLCommand {
                 
         
         
-        response.sendContent(new ResponseContent() {
+        response.sendContent(new HttpResponseContent() {
 
             public String getContentType() {
                 return "application/json";
@@ -66,6 +66,11 @@ public class SendDatasetJson extends AbstractXMLCommand {
 
             public void writeContent(OutputStream out, State state) throws IOException {
                 out.write(datasetString.getBytes());
+            }
+
+            public void setStatusAndHeaders(HttpServletResponse response, State state) {
+                // TODO Auto-generated method stub
+                
             }
             
         }, s);
@@ -87,7 +92,7 @@ public class SendDatasetJson extends AbstractXMLCommand {
         return result;
     }
     
-    public String makeDatasetsJavascript(State s) {
+    public String makeDatasetsJavascript(final State s) {
         Set<Dataset> requiredDatasets = getRequiredDatasets(s);
 
         StringBuilder result = new StringBuilder("{");
@@ -99,7 +104,23 @@ public class SendDatasetJson extends AbstractXMLCommand {
             try {
                clientSideCreator = InterfaceQuery.queryInterface(dataset, TorontoClientSideCapableCreator.class);
                // Null rendering context... not sure if it matters
-               clientSideDataset = clientSideCreator.makeClientSideCapable(null);
+               ScreenRenderingContext c = new ScreenRenderingContext() {
+
+                public SerializationID getNextKID() { return null; }
+
+                public State getCurrentState() {
+                    return s;
+                }
+
+                public NameManager getNameManager() { return null; }
+
+                public boolean isEmbeddedScreen() { return false; }
+
+                public String getContainingScreenName() { return "None"; }
+                   
+               };
+               
+               clientSideDataset = clientSideCreator.makeClientSideCapable(c);
             } catch (UnsupportedInterfaceException e) {
                 throw new ExecutionException(e);
             }
