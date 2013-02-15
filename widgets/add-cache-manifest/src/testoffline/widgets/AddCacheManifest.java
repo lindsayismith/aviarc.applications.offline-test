@@ -31,7 +31,7 @@ public class AddCacheManifest implements DefaultRenderedNodeFactory {
      * @see com.aviarc.framework.toronto.widget.RenderedNodeFactory#createRenderedNode(com.aviarc.framework.xml.compilation.ResolvedElementContext, com.aviarc.framework.toronto.screen.ScreenRenderingContext)
      */
     public RenderedNode createRenderedNode(ResolvedElementContext<CompiledWidget> elementContext,
-                                           ScreenRenderingContext renderingContext) {        
+                                           ScreenRenderingContext renderingContext) {          
         return new AddCacheManifestImpl(elementContext, renderingContext, _definition);            
     }
  
@@ -46,10 +46,14 @@ public class AddCacheManifest implements DefaultRenderedNodeFactory {
      */
     public static class AddCacheManifestImpl extends DefaultRenderedWidgetImpl {
  
+        private String _disableAppCache;
+
         public AddCacheManifestImpl(ResolvedElementContext<CompiledWidget> resolvedContext,
                                             ScreenRenderingContext renderingContext, 
                                             DefaultDefinitionFile definition) {
-            super(resolvedContext, renderingContext, definition);               
+            super(resolvedContext, renderingContext, definition);             
+            this._disableAppCache = renderingContext.getCurrentState().getRequestState().getCurrentRequest().getParameterValue("disableappcache");
+            
         }
  
  
@@ -68,6 +72,9 @@ public class AddCacheManifest implements DefaultRenderedNodeFactory {
         public void registerRequirements(ScreenRequirementsCollector collector) {
             super.registerRequirements(collector);
             
+            if ("y".equals(this._disableAppCache)) {
+                return;            
+            }
             collector.requireManifest();
             
             String name, value;

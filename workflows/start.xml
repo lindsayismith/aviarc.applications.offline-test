@@ -5,18 +5,11 @@
     </authenticate>
 
     <dataset name="data"/>
-    <create-row dataset="data"/>
-    <set-field field="data.field1" value="value11"/>
-    <set-field field="data.field2" value="value12"/>
-        
-        
-    <create-row dataset="data"/>
-    <set-field field="data.field1" value="value21"/>
-    <set-field field="data.field2" value="value22"/>
-
-    <set-field field="var.testvalue" value="ORANGE"/>
+    
 
     <show-screen name="test"/>
+    
+    <show-screen name="next"/>
 
 </workflow>
 

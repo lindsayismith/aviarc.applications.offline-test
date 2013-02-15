@@ -1,0 +1,9 @@
+<widget name="reconnect-timeline"
+        factory-class="com.aviarc.framework.toronto.widget.DefaultWidgetProviderFactoryImpl"
+        action="y">
+    <attributes></attributes>
+    <includes>
+        <js-include file="ReconnectTimeline.js"/>
+    </includes>
+    <js-constructor>new YAHOO.testOffline.ReconnectTimeline()</js-constructor>
+</widget>

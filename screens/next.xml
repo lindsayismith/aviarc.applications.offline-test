@@ -1,0 +1,9 @@
+<screen xmlns:action="urn:aviarc:widget:com.aviarc.toronto.widget.core.action:1" 
+        xmlns:app="urn:aviarc:widget:application">
+        
+    <record-table height="156" width="520" left="165" top="74" dataset="data">
+        <column width="0" display-field="field1" />
+        <column width="0" display-field="field2" />
+        
+    </record-table>
+</screen>

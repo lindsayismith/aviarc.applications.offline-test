@@ -28,16 +28,50 @@ YAHOO
                 throw new Error("No data exists in local storage under key: " + this.getStorageKey());
             }
             datasets = JSON.parse(datasets);
+            
             var dataset, datasetJSON;            
             for (var name in datasets) {
                 if (YAHOO.lang.hasOwnProperty(datasets, name)) {
                     datasetJSON = datasets[name];
                     dataset = state.getApplicationState().getDatasetStack().findDataset(name);
                     if (dataset !== null) {
-                        dataset.fromJSON(datasetJSON);            
+                        this.loadDatasetFromJSON(dataset, datasetJSON);
+                        //dataset.fromJSON(datasetJSON);            
                     }
                 }
             }                                    
+        },
+        
+        
+        loadDatasetFromJSON: function(dataset, datasetJSON) {
+            // What I want to do here is emulate what happens when you replace the contents
+            // of the dataset.  So ideally we would suspend all events, make changes, then 
+            // turn them all on again. For now ommitting the suspend stuff
+            // Delete all rows
+            dataset.deleteAllRows();
+            var newCR = datasetJSON.currentRowIndex;
+            var rows = datasetJSON.rows;
+            var row,values,commitAction, field;
+            var newRow;
+            for (var i = 0; i < rows.length; i++) {                
+                row = rows[i];
+                newRow = dataset.createRow();
+
+                commitAction = row.commitAction;
+                newRow.setCommitAction(commitAction);
+
+                values = row.values;
+                for (var j = 0; j < values.length; j++) {
+                    field = values[j];
+                    for (name in field) {
+                        if (YAHOO.lang.hasOwnProperty(field, name)) {
+                            newRow.setField(name, field[name]);
+                        }
+                    }
+                }
+            }
+            
+            dataset.setCurrentRowIndex(parseInt(newCR));
         },
         
         // Create the storage key for this screen of this instance
