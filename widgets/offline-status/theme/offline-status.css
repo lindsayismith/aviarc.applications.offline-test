@@ -1,0 +1,11 @@
+.$URN$_offline-status {
+    background: black;
+}
+
+.$URN$_offline-status-online {
+    background: green;
+}
+
+.$URN$_offline-status-offline {
+    background: yellow;
+}

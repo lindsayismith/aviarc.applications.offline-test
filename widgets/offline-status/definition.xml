@@ -1,0 +1,11 @@
+<widget name="offline-status" 
+        container-positioning="y" 
+        factory-class="com.aviarc.framework.toronto.widget.DefaultWidgetProviderFactoryImpl">
+    
+    <attributes></attributes>
+    <includes>
+        <css-include file="offline-status.css"/>
+        <js-include file="OfflineStatus.js"/>
+    </includes>
+    <js-constructor>new YAHOO.testOffline.OfflineStatus()</js-constructor>
+</widget>

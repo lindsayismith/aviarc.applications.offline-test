@@ -1,0 +1,31 @@
+.$URN$_appcache-status {
+    background: black;
+}
+
+.$URN$_appcache-status-checking {
+    background: blue;
+}
+
+.$URN$_appcache-status-noupdate{
+    background: white;
+}
+
+.$URN$_appcache-status-downloading {
+    background: orange;
+}
+
+.$URN$_appcache-status-cached {
+    background: green;
+}
+
+.$URN$_appcache-status-updateready {
+    background: pink;
+}
+
+.$URN$_appcache-status-obsolete {
+    background: brown;
+}
+
+.$URN$_appcache-status-error {
+    background: red;
+}

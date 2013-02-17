@@ -61,9 +61,12 @@
     <app:cache-reload-widget />
     <button width="100" height="26" left="713" top="313" label="Join Timeline">
         <action:when event="onclick">
-            <app:reconnect-timeline/>            
+            <app:reconnect-timeline />            
         </action:when>       
-    </button>  
+    </button>
+    <app:appcache-status width="169" height="52" left="857" top="207" />  
+    
+    <app:offline-status width="169" height="52" left="857" top="287" />  
        
     
     
