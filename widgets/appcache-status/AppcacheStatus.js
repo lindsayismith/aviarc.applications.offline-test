@@ -15,20 +15,19 @@ YAHOO
     cacheStatusValues[4] = 'updateready';
     cacheStatusValues[5] = 'obsolete';
     
-    var cacheMessages = {
-        
+    var cacheMessages = {        
         'checking' : "Checking for updates",
         'noupdate' : "Running from cache",
         'downloading' : "Downloading Cache",
-        'progress' : "Cache download progress",
-        'cached' : "Cache download complete",       
+        'progress' : "Cache downloading",
+        'cached' : "Cache complete",       
         'obsolete' : 'Caching removed',
         'error' : 'Error in caching'
-    }
-    
+    };        
 
+   
     testOffline.AppcacheStatus = function() {
-        
+        this._offline = false;
     };
 
     YAHOO.lang.extend(testOffline.AppcacheStatus, Toronto.framework.DefaultWidgetImpl, {
@@ -44,8 +43,9 @@ YAHOO
             var me = this;
             var eventNames = ['checking', 'noupdate', 'downloading', 'progress', 'cached', 'updateready', 'obsolete', 'error'];
             var eName;
+          
             var bindEvent = function(eName) {
-                window.applicationCache.addEventListener(eName, function(e) {
+                window.applicationCache.addEventListener(eName, function(e) {                   
                     if (!YAHOO.lang.isUndefined(me[eName])) {
                         me[eName](e);
                     } else {
@@ -65,6 +65,11 @@ YAHOO
         },
         
         handleEvent: function(eName, e) {
+            if (this._offline) {
+                // If we're offline then events will probably just be errors, which aren't helpful
+                return;                    
+            }
+            //console.log(e);
             this.addClass(eName);
             
             var message = cacheMessages[eName];
@@ -82,7 +87,7 @@ YAHOO
             if (type == 'error' && navigator.onLine) {
                 message+= ' (prolly a syntax error in manifest)';
             }
-            console.log(message);
+            //console.log(message);
         },
         
         refresh: function () {
@@ -93,6 +98,12 @@ YAHOO
             return [
                 this.getContainerElement()
             ];
+        },
+        
+        notifyOffline: function() {
+            this._offline = true;
+            this.addClass("offline");
+            this.getContainerElement().innerHTML = "Offline";
         }
     });
     

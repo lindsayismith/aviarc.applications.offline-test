@@ -69,7 +69,7 @@
         </action:when>       
     </button>
     
-    <app:appcache-status width="169" height="52" left="857" top="207" visible="n" />  
+    <app:appcache-status name="appcache-status" width="169" height="52" left="857" top="207" visible="n" />  
     
     <!--
     <app:offline-status width="169" height="52" left="857" top="287" visible="n" />  
@@ -95,7 +95,11 @@
         
     <action:when event="online-detect.onOnlineDetected">
         <action:call-widget-method method="btnLoad.setEnabled" value1="y"/>
-        <action:call-widget-method method="btnNext.setEnabled" value1="y"/>
+        <action:call-widget-method method="btnNext.setEnabled" value1="y"/>        
+    </action:when>
+    
+    <action:when event="online-detect.onOfflineDetected">        
+        <action:call-widget-method method="appcache-status.notifyOffline"/>
     </action:when>
         
 </screen>

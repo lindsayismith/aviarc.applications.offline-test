@@ -6,7 +6,8 @@ YAHOO
     YAHOO.namespace("testOffline");
     var testOffline = YAHOO.testOffline;
     var Toronto = YAHOO.com.aviarc.framework.toronto;
-
+    
+    var INITIAL = "Initial";
     var OFFLINE = "Offline";
     var TESTING = "Testing";
     var ONLINE = "Online";
@@ -14,9 +15,10 @@ YAHOO
     var INTERNAL_TIMEOUT = 3000;
 
     testOffline.OfflineStatusDetection = function() {
-        this._status = OFFLINE;
+        this._status = INITIAL;
         
         this.onOnlineDetected = new Toronto.client.Event("offline-status-detection onOnlineDetected");
+        this.onOfflineDetected = new Toronto.client.Event("offline-status-detection onOfflineDetected ");
     };
     
     var wrapDataContextFunctionsOverride = function(o, proto) {
@@ -24,7 +26,6 @@ YAHOO
             for (var i in o) {
                 item = o[i];
                 if (YAHOO.lang.isFunction(item) && !proto[i] && (i.charAt(0) != "_")) {
-                    console.log("wrapping " + i);
                     this[i] = this._registerWrappingFunction(i, o);
                 }
 
@@ -41,12 +42,22 @@ YAHOO
             if (navigator.onLine) {
                 this.setStatus(TESTING);
             } else {
-                this.setStatus(OFFLINE);                
+                this.setOffline();                               
             }
             
             // Do an ajax call to our reconnect timeline, if this succeeds, we are online.
             // If it doesn't, we are offline
             this.doReconnect();  
+        },
+        
+        setOnline: function() {
+            this.setStatus(ONLINE);  
+            this.onOnlineDetected.fireEvent({ widget: this });
+        },
+                
+        setOffline: function() {
+            this.setStatus(OFFLINE);  
+            this.onOfflineDetected.fireEvent({ widget: this });
         },
         
         setStatus: function(status) {
@@ -97,13 +108,13 @@ YAHOO
         
         failure: function(response) {
             clearTimeout(this._timeout);
-            console.log("FAILURE");
-            this.setStatus(OFFLINE);
+            //console.log("FAILURE");
+            this.setOffline();
         },
         
         success: function(response) {
             clearTimeout(this._timeout);
-            console.log("DONE");
+            //console.log("DONE");
             //console.log(response.responseText);
             /*
              First time we'll get a redirect...
@@ -138,9 +149,9 @@ YAHOO
             } else {
                 newKID = matches[1];
             }
-            console.log("new KID: " + newKID);
+            //console.log("new KID: " + newKID);
             Toronto.internal.GlobalState.setServerStateKID(newKID);
-            console.log("set....");
+            //console.log("set....");
             
             // Now we have to take the data context tree and replace the IDs in our own tree with the 
             // ones from le server.  If we dont' do this, then the postback fails as the data context updates
@@ -191,10 +202,7 @@ YAHOO
             Toronto.internal.GlobalState.getWidgetTree().bindFromRoot();
             Toronto.internal.GlobalState.getWidgetTree().refreshFromRoot();            
                         
-            this.setStatus(ONLINE);
-            
-            // Fire event
-            this.onOnlineDetected.fireEvent({ widget: this });
+            this.setOnline();
         },
         
         isOnline: function() {

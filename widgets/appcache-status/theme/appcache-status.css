@@ -30,3 +30,7 @@
 .$URN$_appcache-status-error {
     background: red;
 }
+
+.$URN$_appcache-status-offline {
+    background: cyan;
+}
