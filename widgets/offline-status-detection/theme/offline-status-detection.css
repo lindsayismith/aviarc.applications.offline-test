@@ -1,0 +1,18 @@
+.$URN$_offline-status-detection {
+    font-size: 24px;
+    background: black;
+}
+
+.$URN$_offline-status-detection-Offline {
+    background: yellow;
+}
+
+.$URN$_offline-status-detection-Testing {
+    background: orange;
+}
+
+.$URN$_offline-status-detection-Online {
+    background: green;
+}
+
+

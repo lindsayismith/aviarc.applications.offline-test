@@ -1,0 +1,11 @@
+<workflow>
+    <delete-all-rows dataset="key-data"/>
+    <create-row dataset="key-data"/>
+    <set-field field="key-data.name" value="Gisborne"/>
+
+    <create-row dataset="key-data"/>
+    <set-field field="key-data.name" value="Tauranga"/>
+    
+    <create-row dataset="key-data"/>    
+    <set-field field="key-data.name" value="Rotorua"/>        
+</workflow>

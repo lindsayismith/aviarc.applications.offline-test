@@ -15,6 +15,17 @@ YAHOO
     cacheStatusValues[4] = 'updateready';
     cacheStatusValues[5] = 'obsolete';
     
+    var cacheMessages = {
+        
+        'checking' : "Checking for updates",
+        'noupdate' : "Running from cache",
+        'downloading' : "Downloading Cache",
+        'progress' : "Cache download progress",
+        'cached' : "Cache download complete",       
+        'obsolete' : 'Caching removed',
+        'error' : 'Error in caching'
+    }
+    
 
     testOffline.AppcacheStatus = function() {
         
@@ -55,6 +66,11 @@ YAHOO
         
         handleEvent: function(eName, e) {
             this.addClass(eName);
+            
+            var message = cacheMessages[eName];
+            if (!YAHOO.lang.isUndefined(message)) {             
+                this.getContainerElement().innerHTML = message ;
+            }
             
             var online, status, type, message;
             online = (navigator.onLine) ? 'yes' : 'no';

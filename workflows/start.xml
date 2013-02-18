@@ -5,7 +5,7 @@
     </authenticate>
 
     <dataset name="data"/>
-    
+    <dataset name="key-data"/>
 
     <show-screen name="test"/>
     
