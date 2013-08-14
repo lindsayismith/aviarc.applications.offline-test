@@ -75,7 +75,7 @@
     <app:offline-status width="169" height="52" left="857" top="287" visible="n" />  
     -->
     
-    <app:offline-status-detection name="online-detect" width="169" height="52" left="820" top="48" />  
+    <app:offline-status-detection name="online-detect" width="169" height="52" left="857" top="68" />  
        
     <!-- 
         OK so what we want to do is...
